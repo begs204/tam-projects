@@ -1,13 +1,25 @@
 <html>
   <head>
-  <head>
-  <body>
+  </head>
+  <body>		
     <div>
       this is going to be the new <b>aweseome</b> Twitter button!
     </div>
+    <script style ="text/javascript">
+    function howard_dean(img_id){
+    	if (document.getElementById(img_id).style.display == "true"){
+    		document.getElementById(img_id).style.display = "none";
+    	}
+    	else {
+    	document.getElementById(img_id).style.display = "true";
+    	}
+    }
+    </script>
+    	
     <div> <b><i>Giddy Up!</i></b>
         <br>
-    	<img height = '35%'  width = "25%" src="http://media.ebaumsworld.com/picture/mykell07/BYAAAH.png" />
+        <button type="button" onclick="howard_dean('dean')">Byaaa?</button>
+            	<img height = "35%"  width = "25%" id="dean" style = "display:true" onclick= "howard_dean(dean);" src="http://media.ebaumsworld.com/picture/mykell07/BYAAAH.png" />
     </div>
   </body>
 </html>
