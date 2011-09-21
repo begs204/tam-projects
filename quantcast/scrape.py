@@ -2,7 +2,7 @@
 ## 9/15/11
 
 import os, re, sys, urllib
-from xlsxcessive.xlsx import Workbook
+from xlsxcessive.xlsx import Workbook, save
 
 
 ##Parse inbound Text file of sites
@@ -94,15 +94,17 @@ def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook):
 		sheet_dict[site].cell(coords=(0,0), value=site)
 		
 		##Demographic Stats
-		row_dem = 2, col_dem = 0
+		row_dem = 2; col_dem = 0
 		for key1 in stats_dem[site].iterkeys():
 			#print key1, stats_dem[site][key1]
 			sheet_dict[site].cell(coords=(row_dem,col_dem), value=key1) ##Key
 			sheet_dict[site].cell(coords=(row_dem,col_dem + 1), value=stats_dem[site][key1]) ##Value
 			row_dem += 1
 			
+			#print sheet_dict[site]
 		sheet_count +=1
-		#print stats_dem[site]
+	
+	save(workbook, 'test_file.xlsx')
 	
 	
 	
