@@ -53,10 +53,10 @@ def quant(site_list):
 
 ##Lifestyle Numbers
 def LS_quant(site_list):
-
+	#print site_list
 	stats = {}
-	for url in site_list:
-		ufile = urllib.urlopen('http://www.quantcast.com/' + url +'/lifestyle')
+	for url1 in site_list:
+		ufile = urllib.urlopen('http://www.quantcast.com/' + url1 +'/lifestyle')
 
 		utext = good_HTML(ufile)		
 		utext_sub = utext[utext.index('<p class="caption">Data Source: United States Monthly</p>'):utext.index('<div id="footer">')] 
@@ -66,8 +66,8 @@ def LS_quant(site_list):
 		for tuple in cat_tuples:
 			param[tuple[0]] = tuple[1]
 			
-		stats[url] = param
-		return stats
+		stats[url1] = param
+	return stats
 
 
 ##Reach Statistics		
@@ -83,6 +83,8 @@ def Reach_quant(site_list):
 		stats[url] = tuple
 	return stats
 
+
+
 ##Generate Excel File
 def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook):
 	sheet_dict = {}
@@ -93,17 +95,41 @@ def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook):
 		sheet_dict[site] = workbook.new_sheet(site)
 		sheet_dict[site].cell(coords=(0,0), value=site)
 		
+		sheet_dict[site].cell(coords=(2,0), value = 'Demographic Stats')
+		sheet_dict[site].cell(coords=(2,3), value = 'Reach Stats')
+		sheet_dict[site].cell(coords=(2,6), value = 'LifeStyle Stats')
+		
+		sheet_dict[site].cell(coords=(2,1), value = '%')
+		sheet_dict[site].cell(coords=(2,4), value = 'Monthly Uniques')
+		sheet_dict[site].cell(coords=(2,7), value = 'Affinity')
+		
 		##Demographic Stats
 		row_dem = 2; col_dem = 0
 		for key1 in stats_dem[site].iterkeys():
-			#print key1, stats_dem[site][key1]
 			sheet_dict[site].cell(coords=(row_dem,col_dem), value=key1) ##Key
 			sheet_dict[site].cell(coords=(row_dem,col_dem + 1), value=stats_dem[site][key1]) ##Value
 			row_dem += 1
+		
+		##Reach Stats - Not stored in list, not dict
+		row_reach = 3; col_reach = 3
+		for key2 in stats_reach[site]:
+			if row_reach == 3:
+				sheet_dict[site].cell(coords=(row_reach,col_reach), value='US') ##Key
+			elif row_reach == 4:
+				sheet_dict[site].cell(coords=(row_reach,col_reach), value='Global') ##Key
+			else:
+				sheet_dict[site].cell(coords=(row_reach,col_reach), value='N/A') ##Key
+			sheet_dict[site].cell(coords=(row_reach,col_reach+1), value=key2) ##Value
+			row_reach +=1	
+
+		##Lifestyle Stats
+		row_lifestyle = 3; col_lifestyle = 6
+		for key3 in stats_lifestyle[site].iterkeys():
+			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=key3) ##Key
+			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=stats_lifestyle[site][key3]) ##Value
+			row_lifestyle +=1			
 			
-			#print sheet_dict[site]
-		sheet_count +=1
-	
+	sheet_count +=1	
 	save(workbook, 'test_file.xlsx')
 	
 	
@@ -116,18 +142,12 @@ def main():
 		stats_dem = quant(list_main)
 		stats_lifestyle = LS_quant(list_main)
 		stats_reach = Reach_quant(list_main)
-		
-		
-		#for key in stats_dem.iterkeys():
-			#print key, stats_dem[key]
-			#for key2 in stats_dem[key].iterkeys():
-				#print key2, stats_dem[key][key2]
-			#print 'Hello'
-		
+
 		##Instantiate and compose the Excel File
 		workbook = Workbook()		
 		gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook)
 		
+
 		
 if __name__ == '__main__':
   main()
