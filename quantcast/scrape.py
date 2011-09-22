@@ -86,7 +86,7 @@ def Reach_quant(site_list):
 
 
 ##Generate Excel File
-def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook):
+def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook, name):
 	sheet_dict = {}
 	sheet_count = 1
 	
@@ -130,11 +130,9 @@ def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook):
 			row_lifestyle +=1			
 			
 	sheet_count +=1	
-	save(workbook, 'test_file.xlsx')
+	save(workbook, name + '.xlsx')
 	
 	
-	
-
 def main():	
 	args = sys.argv[1:]
 	for filename in args:
@@ -145,7 +143,8 @@ def main():
 
 		##Instantiate and compose the Excel File
 		workbook = Workbook()		
-		gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook)
+		name = filename[:filename.index('.')]
+		gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook, name)
 		
 
 		
