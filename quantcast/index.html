@@ -3,9 +3,11 @@
 <h1>Quantcast Metrics</h1>
 <!--hey there -->
 
-<form enctype="multipart/form-data" action="upload_file.py" method="post">
-<p>File: <input type="file" name="myfile"></p>
-<p><input type="submit" value="Upload"></p>
+<form action="upload_file.php" method="post" enctype="multipart/form-data">
+<label for="file">Filename:</label>
+<input type="file" name="file" id="file" /> 
+<br />
+<input type="submit" name="submit" value="Submit" />
 </form>
 <h4>Be sure to thank your friendly neighborhood TAM :)</h4>
 </body>
