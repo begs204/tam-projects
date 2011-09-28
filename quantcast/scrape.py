@@ -57,7 +57,7 @@ def quant(site_list):
 
 ##Lifestyle Numbers
 def LS_quant(site_list):
-	#print site_list
+
 	stats = {}
 	for url1 in site_list:
 		ufile = urllib.urlopen('http://www.quantcast.com/' + url1 +'/lifestyle')
@@ -72,8 +72,8 @@ def LS_quant(site_list):
 		
 		cat_tuples = re.findall(r'<td>([\w\d\+\.\s/-]+)</td>\n<td class="digit">([\d\.+]+)x</td>',utext_sub)
 		for tuple in cat_tuples:
-			param[tuple[0]] = tuple[1]
-			
+			param[tuple[0]] = float(tuple[1])
+		
 		stats[url1] = param
 	return stats
 
@@ -136,10 +136,15 @@ def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook, name)
 
 		##Lifestyle Stats
 		row_lifestyle = 3; col_lifestyle = 6
-		for key3 in stats_lifestyle[site].iterkeys():
-			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=key3) ##Key
-			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=stats_lifestyle[site][key3]) ##Value
-			row_lifestyle +=1			
+# 		for key3 in stats_lifestyle[site].iterkeys():
+# 			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=key3) ##Key
+# 			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=stats_lifestyle[site][key3]) ##Value
+# 			row_lifestyle +=1		
+			
+		for w in sorted(stats_lifestyle[site].items(), key=lambda(k,v):(v,k), reverse=True):
+			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=w[0]) ##Key
+			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=w[1]) ##Key
+			row_lifestyle +=1	
 			
 	sheet_count +=1	
 	save(workbook, name + '.xlsx')
