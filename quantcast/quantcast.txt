@@ -37,10 +37,6 @@ def quant(site_list):
 		
 		##Retrieve relevant substring
 		utext = good_HTML(ufile)
-		if not (re.search('id="demographic-tooltip"',utext) and re.search('id="simaudience-tooltip"',utext)):
-			print 'Could not locate Demographic Statistics for ' + url
-			continue ##Error Handling
-			
 		utext_sub = utext[utext.index('id="demographic-tooltip"'):utext.index('id="simaudience-tooltip"')]
 		utext_sub = utext_sub[utext_sub.index('<tbody>'):]
 		param = {}
@@ -62,11 +58,7 @@ def LS_quant(site_list):
 	for url1 in site_list:
 		ufile = urllib.urlopen('http://www.quantcast.com/' + url1 +'/lifestyle')
 
-		utext = good_HTML(ufile)
-		if not (re.search('<p class="caption">Data Source: United States Monthly</p>',utext) and re.search('<div id="footer">',utext)):
-			print 'Could not locate Lifestyle Statistics for ' + url
-			continue ##Error Handling
-		
+		utext = good_HTML(ufile)		
 		utext_sub = utext[utext.index('<p class="caption">Data Source: United States Monthly</p>'):utext.index('<div id="footer">')] 
 		param = {}
 		
@@ -85,10 +77,6 @@ def Reach_quant(site_list):
 		ufile = urllib.urlopen('http://www.quantcast.com/' + url)
 		
 		utext = good_HTML(ufile)
-		if not (re.search('id="reach-wd',utext) and re.search('id="sparkline-wd:',utext)):
-			print 'Could not locate Reach Statistics for ' + url
-			continue ##Error Handling
-			
 		utext_sub = utext[utext.index('id="reach-wd'):utext.index('id="sparkline-wd:')]
 		tuple = re.findall(r'">\n([\d\w\.]+)<p class="label">',utext_sub)
 		
