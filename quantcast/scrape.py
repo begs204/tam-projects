@@ -1,5 +1,5 @@
 ## Quantcast Scraping Module
-## 9/15/11
+## 9/28/11
 
 import os, re, sys, urllib
 from xlsxcessive.xlsx import Workbook, save
@@ -135,15 +135,11 @@ def gen_xlsx(list_main, stats_dem, stats_lifestyle, stats_reach, workbook, name)
 			row_reach +=1	
 
 		##Lifestyle Stats
-		row_lifestyle = 3; col_lifestyle = 6
-# 		for key3 in stats_lifestyle[site].iterkeys():
-# 			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=key3) ##Key
-# 			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=stats_lifestyle[site][key3]) ##Value
-# 			row_lifestyle +=1		
+		row_lifestyle = 3; col_lifestyle = 6	
 			
 		for w in sorted(stats_lifestyle[site].items(), key=lambda(k,v):(v,k), reverse=True):
 			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle), value=w[0]) ##Key
-			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=w[1]) ##Key
+			sheet_dict[site].cell(coords=(row_lifestyle,col_lifestyle + 1), value=w[1]) ##Value
 			row_lifestyle +=1	
 			
 	sheet_count +=1	
