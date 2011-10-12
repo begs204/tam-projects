@@ -3,12 +3,138 @@
 <h1>Quantcast Metrics</h1>
 <!--hey there -->
 
-<form action="upload_file.php" method="post" enctype="multipart/form-data">
-<label for="file">Filename:</label>
-<input type="file" name="file" id="file" /> 
-<br />
-<input type="submit" name="submit" value="Submit" />
-</form>
+<script type="text/javascript">
+window.Meebo||function(c){function p(){return["<",i,' onload="var d=',g,";d.getElementsByTagName('head')[0].",
+j,"(d.",h,"('script')).",k,"='//cim.meebo.com/cim?iv=",a.v,"&",q,"=",c[q],c[l]?
+"&"+l+"="+c[l]:"",c[e]?"&"+e+"="+c[e]:"","'\"></",i,">"].join("")}var f=window,
+a=f.Meebo=f.Meebo||function(){(a._=a._||[]).push(arguments)},d=document,i="body",
+m=d[i],r;if(!m){r=arguments.callee;return setTimeout(function(){r(c)},100)}a.$=
+{0:+new Date};a.T=function(u){a.$[u]=new Date-a.$[0]};a.v=5;var j="appendChild",
+h="createElement",k="src",l="lang",q="network",e="domain",n=d[h]("div"),v=n[j](d[h]("m")),
+b=d[h]("iframe"),g="document",o,s=function(){a.T("load");a("load")};f.addEventListener?
+f.addEventListener("load",s,false):f.attachEvent("onload",s);n.style.display="none";
+m.insertBefore(n,m.firstChild).id="meebo";b.frameBorder="0";b.name=b.id="meebo-iframe";
+b.allowTransparency="true";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=
+d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{var t=
+b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write("'+p().replace(/"/g,
+'\\"')+'");d.close();'}a.T(1)}({network:"jason_test_rob_autos"});
+
+    	Meebo('addButton', {
+        id: "mb_sign_up", 
+        type: "widget", 
+        icon: "http://meebojasonb.nfshost.com/rob_autos/icon_pencil.png",
+        label: "Sign Up",
+        width: 274,
+        height: 307,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Rdiv = document.createElement('div');
+			var mb_Rimg = document.createElement('img');
+			
+			mb_Rimg.src = "http://meebojasonb.nfshost.com/rob_autos/autotrader.png";	
+			mb_Rdiv.appendChild(mb_Rimg);
+			element.appendChild(mb_Rdiv);
+		}	 
+    });
+    	Meebo('addButton', {
+        id: "mb_editors_picks", 
+        type: "widget", 
+        icon: "http://meebojasonb.nfshost.com/rob_autos/icon_check2.png",
+        label: "Editor's Picks",
+        width: 316,
+        height: 455,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Ediv = document.createElement('div');
+			var mb_Eimg = document.createElement('img');
+			
+			mb_Eimg.src = "http://meebojasonb.nfshost.com/rob_autos/autoblog.png";	
+			mb_Ediv.appendChild(mb_Eimg);
+			element.appendChild(mb_Ediv);
+		}	 
+    });
+    	Meebo('addButton', {
+        id: "mb_videos", 
+        type: "widget", 
+        icon: "http://t2.gstatic.com/images?q=tbn:ANd9GcSUGJyHAUgNa-X8ftEitXlmWEpGTXnliJqt2uo5hXDsN3GhgfvH",
+        label: "Videos",
+        width: 502,
+        height: 414,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Vdiv = document.createElement('div');
+			var mb_Vimg = document.createElement('img');
+			
+			mb_Vimg.src = "http://meebojasonb.nfshost.com/rob_autos/autoshows.png";	
+			mb_Vdiv.appendChild(mb_Vimg);
+			element.appendChild(mb_Vdiv);
+		}	 
+    });
+    	Meebo('addButton', {
+        id: "mb_reviews", 
+        type: "widget", 
+        icon: "http://meebojasonb.nfshost.com/rob_autos/icon_thumb2.png",
+        label: "Reviews",
+        width: 410,
+        height: 417,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Adiv = document.createElement('div');
+			var mb_Aimg = document.createElement('img');
+			
+			mb_Aimg.src = "http://meebojasonb.nfshost.com/rob_autos/car_reviews.png";	
+			mb_Adiv.appendChild(mb_Aimg);
+			element.appendChild(mb_Adiv);
+		}	 
+    });
+    	Meebo('addButton', {
+        id: "mb_part_finder", 
+        type: "widget", 
+        icon: "http://meebojasonb.nfshost.com/rob_autos/icon_wrench2.png",
+        label: "Auto Part Finder",
+        width: 309,
+        height: 257,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Pdiv = document.createElement('div');
+			var mb_Pimg = document.createElement('img');
+			
+			mb_Pimg.src = "http://meebojasonb.nfshost.com/rob_autos/amazon.png";	
+			mb_Pdiv.appendChild(mb_Pimg);
+			element.appendChild(mb_Pdiv);
+		}	 
+    });
+    	Meebo('addButton', {
+        id: "mb_local", 
+        type: "widget", 
+        icon: "http://meebojasonb.nfshost.com/rob_autos/icon_pin2.png",
+        label: "Find Local Dealers",
+        width: 310,
+        height: 210,
+		notResizable:true,
+		noBorder:true,
+        onCreate: function(widget, element){ 
+		
+			var mb_Ldiv = document.createElement('div');
+			var mb_Limg = document.createElement('img');
+			
+			mb_Limg.src = "http://meebojasonb.nfshost.com/rob_autos/local_dealers.png";	
+			mb_Ldiv.appendChild(mb_Limg);
+			element.appendChild(mb_Ldiv);
+		}	 
+    });
+</script>    
+
 <h4>Be sure to thank your friendly neighborhood TAM :)</h4>
 </body>
 </html>
