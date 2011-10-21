@@ -1,3 +1,0 @@
-network:'theknot2';site:'theknot'
-Top Venues; icon_topvenues.png;topvenues.png
-Runway Looks;icon_toplooks.png; runwaylooks.png
