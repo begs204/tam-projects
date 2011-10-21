@@ -17,35 +17,40 @@ def image_px(pic):
 
 ##Generate Demo Script
 def generate(f_path, network,button_list):
-	embed1 = open('embed1_test.txt','rU').read().replace('\n','')
-	button_text = embed1[embed1.index('Meebo(\'addButton'):] #button code
-	embed = embed1.replace('$$network$$',network) #replace network variable
+	embed_read = open('embed1_test.txt','rU').read().replace('\n','')
+	button_text = embed_read[embed_read.index('Meebo(\'addButton'):] #button code
+	header = embed_read[:embed_read.index('Meebo(\'addButton')].replace('<>network<>',network) #replace network variable
+	button_dict = {}
 
 	mb_id_list = map(chr, range(97,123)); mb_index = 0 ##list of letters
 	for button in button_list:
 		new_button_text = button_text
 
 		mb_id = mb_id_list[mb_index]
-		new_button_text.replace('$$id$$',mb_id)
-		new_button_text.replace('$$label$$', button)
+		new_button_text1 = new_button_text.replace('<>id<>',mb_id)
+		new_button_text2 = new_button_text1.replace('<>label<>', button)	
 
 		name = button.lower().replace(' ','').strip().replace('\'','').replace(',','').replace('.','')
-		new_button_text.replace('$$icon$$', network + '/' + 'icon_' + name + '.png')
-		new_button_text.replace('$$image$$', network + '/' + name + '.png')
+		new_button_text3 = new_button_text2.replace('<>icon<>', network + '/' + 'icon_' + name + '.png')
+		new_button_text4 = new_button_text3.replace('<>image<>', network + '/' + name + '.png')
+		
+		if f_path+ '/' + network+ '/'+name+'.png' in os.listdir('..'):
+				print 'heya'
+		print os.listdir('..')
+		##new_button_text.replace('<>px_w<>',image_px(f_path+ '/' + network+ '/'+name+'.png')[0])
+		##new_button_text.replace('<>px_h<>',image_px(f_path+ '/' + network+ '/'+name+'.png')[1])
 
-		new_button_text.replace('$$px_w$$',image_px(f_path+ '/' + network+ '/'+name+'.png')[0])
-		new_button_text.replace('$$px_h$$',image_px(f_path+ '/' + network+ '/'+name+'.png')[1])
-
-		embed = embed + new_button_text
+		button_dict[button] = new_button_text4
 		new_button_text = ''; mb_index +=1
+	#print button_dict
 	
-	embed = embed + 'Meebo(\'domReady\');'
-	return embed
+	#embed_final = embed + 'Meebo(\'domReady\');'
+	#return embed_final
 
 def save_file(f_path,network,button_list):
 	text = generate(f_path,network,button_list)
-	
-	n_file = open(f_path+'/'+network+network+ '.js','w') #create JS file
+	#print text
+	n_file = open('..' + f_path+'/'+network+ '/' +network+ '.js','w') #create JS file
 	pickle.dump(text,n_file)
 	n_file.close()
 
