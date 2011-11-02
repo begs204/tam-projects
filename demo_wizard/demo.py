@@ -12,10 +12,7 @@ from PIL import Image
 def generate(network,button_list):
 	filename = 'demo_template.js'
 	embed_read = open(filename,'rU').read()#.replace('\n','')
-	# st = ''
-	# for char in embed_read1:
-	# 	st+=char
-	# embed_read = st
+
 	button_text = embed_read[embed_read.index('Meebo(\'addButton'):] #button code
 	header = embed_read[:embed_read.index('Meebo(\'addButton')].replace('<>network<>',network) #replace network variable
 	button_dict = {}
