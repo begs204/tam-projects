@@ -7,6 +7,7 @@
 
 import os, sys, re, urllib, array
 from PIL import Image
+from jb_iframe import *
 
 ##Generate Demo Script
 def generate(network,button_list):
@@ -31,10 +32,10 @@ def generate(network,button_list):
 
 		files = os.listdir('../'+network)
 		if name+'.png' in files:
-			new_button_text5 = new_button_text4.replace('<>px_w<>', str(image_px('../'+network+'/'+name+'.png')[0]))
-			new_button_text6 = new_button_text5.replace('<>px_h<>', str(image_px('../'+network+'/'+name+'.png')[1]))
+			new_button_text5 = new_button_text4.replace('<>px_w<>', str(image_px('../'+network+'/'+name+'.png')[0] + 2))
+			new_button_text6 = new_button_text5.replace('<>px_h<>', str(image_px('../'+network+'/'+name+'.png')[1] + 2))
 		else:
-			print 'Couldn\'t locate image files'
+			print 'Couldn\'t locate image files' + name
 			sys.exit(1)	
 		button_dict[button] = new_button_text6; new_button_text = ''
 		mb_index += 1
@@ -62,9 +63,11 @@ def image_px(pic):
 def main():
 	args = sys.argv[1:]
 	network = args[0]
+	url = args[1]
 	button_list = []
-	for button in args[1:]:
+	for button in args[2:]:
 		button_list.append(button)
 	save_file(network,button_list)
+	iframe_web(network,url)
 if __name__ == '__main__':
 	main()
