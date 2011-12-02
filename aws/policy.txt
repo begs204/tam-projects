@@ -1,0 +1,10 @@
+{"expiration": "2015-01-01T00:00:00Z",
+  "conditions": [ 
+    {"bucket": "meebo_partners"}, 
+    ["starts-with", "$key", "demos/test_demo/"],
+    {"acl": "public-read"},
+    {"success_action_redirect": "https://s3.amazonaws.com/meebo_partners/demos/test_demo/success.html"},
+    ["starts-with", "$Content-Type", ""],
+    ["content-length-range", 0, 1048576]
+  ]
+}

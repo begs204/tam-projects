@@ -1,0 +1,24 @@
+<html> 
+  <head>
+    <title>S3 POST Form</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body> 
+    <form action="https://s3.amazonaws.com/meebo_partners/" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="key" value="demos/test_demo/${filename}">
+      <input type="hidden" name="AWSAccessKeyId" value="AKIAIX2UHY2SA5IG3Q2A"> 
+      <input type="hidden" name="acl" value="public-read"> 
+      <input type="hidden" name="success_action_redirect" value="https://s3.amazonaws.com/meebo_partners/demos/test_demo/success.html">
+      <input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjoiMjAxNS0wMS0wMVQwMDowMDowMFoiLCJjb25kaXRpb25zIjpbeyJidWNrZXQiOiJtZWVib19wYXJ0bmVycyJ9LFsic3RhcnRzLXdpdGgiLCIka2V5IiwiZGVtb3MvdGVzdF9kZW1vLyJdLHsiYWNsIjoicHVibGljLXJlYWQifSx7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjoiaHR0cHM6Ly9zMy5hbWF6b25hd3MuY29tL21lZWJvX3BhcnRuZXJzL2RlbW9zL3Rlc3RfZGVtby9zdWNjZXNzLmh0bWwifSxbInN0YXJ0cy13aXRoIiwiJENvbnRlbnQtVHlwZSIsIiJdLFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsMTA0ODU3Nl1dfQ==">
+      <input type="hidden" name="signature" value="7o9/CqebITBmNErYi1P8/IYCkm0=">
+      <input type="hidden" name="Content-Type" value="image/png">
+      <!-- Include any additional input fields here -->
+
+      File to upload to S3: 
+      <input name="file" type="file"> 
+      <br> 
+      <input type="submit" value="Upload File to S3"> 
+    </form> 
+  </body>
+</html>
